@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>VST HW4</title>
+</head>
+<body>
+  
+  <img id="Image" src="{{url_for('static', filename='/Image/testimg.png')}}" alt="Embedded Image">
+
+  <script>
+
+    var img = document.getElementById("Image");
+
+    img.onclick = function(event) {
+
+      call_url = "/" + event.clientX + "/" + event.clientY
+      window.location = call_url
+      console.log(call_url)
+    }
+
+  </script>
+
+  <h3>Clicked x = {{clickX}}; y = {{clickY}}</h3>
+</body>
+</html>
