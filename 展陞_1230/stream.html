@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        .mouse{
+            cursor: none;
+            position: absolute;
+            background: #ff0000;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+        }
+    </style>
+	<head>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body>
+        <div id="mouse" class="mouse"></div>
+        <script>
+            // https://blog.csdn.net/WHT869706733/article/details/121659678
+            var mouse = document.getElementById('mouse');
+            document.onmousemove = function(event){
+                var event = event || window.event;
+
+                var pageX = event.pageX || event.clientX + document.documentElement.scrollLeft;
+                var pageY= event.pageY || event.clientY + document.documentElement.scrollTop;
+
+                var targetX = pageX - mouse.offsetWidth / 2;
+                var targetY = pageY - mouse.offsetHeight / 2;
+
+                mouse.style.display = 'block';
+                mouse.style.left = targetX + 'px';
+                mouse.style.top = targetY + 'px';
+
+                document.getElementById('val').innerHTML = 'current position: ' + event.clientX + ', ' + event.clientY;
+            }
+        </script>
+		<div class="container">
+			<div class="row">
+				<div class="grid-cols-8">
+					<h3 class="text-4xl text-center m-11">Live Streaming</h3>
+					<img src="{{ url_for('video_stream') }}" width="100%">
+				</div>
+			</div>
+		</div>
+        <span class="val" id="val" style="font-size: 40px;"></span>
+	</body>
+</html>
